@@ -1,7 +1,8 @@
 class HousesController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
   before_action :set_house, only: %i[show edit update destroy]
-  before_action :owner?, only: %i[edit update destroy]
+
+  helper_method :owner?
 
   def index
     @houses = House.all
@@ -50,9 +51,8 @@ class HousesController < ApplicationController
 
   private
 
-  # TODO: DRY it. HousesHelper has same method.
   def owner?
-    true if @house.user == current_user
+    @house&.user == current_user
   end
 
   def set_house
