@@ -5,14 +5,11 @@ module HousesHelper
   #   int_to_gender(@house.preferred_gender)
   #   # => 'Either'
   def int_to_gender(int)
-    case int
-    when 0
-      'Either'
-    when 1
-      'Female'
-    when 2
-      'Male'
-    end
+    {
+      0 => 'Either',
+      1 => 'Female',
+      2 => 'Male'
+    }[int]
   end
 
   # Visualize boolean value with checkmark or cross
@@ -30,10 +27,5 @@ module HousesHelper
     end
 
     value.html_safe
-  end
-
-  # TODO: DRY it. HousesController has same method.
-  def owner?
-    true if @house.user == current_user
   end
 end
