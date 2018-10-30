@@ -19,6 +19,6 @@ module HousesHelper
   #   check_it(@house.checkbox.refrigerator)
   #   # => '&checkmark;'
   def check_it(value)
-    value == true ? '&checkmark;'.html_safe : '&cross;'.html_safe
+    value ? '&checkmark;'.html_safe : '&cross;'.html_safe
   end
 end
